@@ -1,0 +1,917 @@
+accounting-app/
+│
+├── index.html
+├── styles.css
+└── script.js
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Software de Contabilidad</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Software de Contabilidad</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#transacciones">Registrar Transacciones</a></li>
+            <li><a href="#reportes">Ver Reportes</a></li>
+            <li><a href="#ajustes">Ajustes</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <section id="transacciones">
+            <h2>Registrar Transacciones</h2>
+            <form id="transaccion-form">
+                <label for="tipo">Tipo de Transacción:</label>
+                <select id="tipo" name="tipo">
+                    <option value="ingreso">Ingreso</option>
+                    <option value="gasto">Gasto</option>
+                </select>
+                
+                <label for="monto">Monto:</label>
+                <input type="number" id="monto" name="monto" required>
+                
+                <label for="descripcion">Descripción:</label>
+                <input type="text" id="descripcion" name="descripcion">
+                
+                <button type="submit">Registrar</button>
+            </form>
+            <div id="transaccion-list"></div>
+        </section>
+        
+        <section id="reportes">
+            <h2>Reportes</h2>
+            <p>En esta sección se mostrarán los reportes generados.</p>
+        </section>
+        
+        <section id="ajustes">
+            <h2>Ajustes</h2>
+            <p>Aquí puedes configurar tus preferencias.</p>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Software de Contabilidad</p>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    padding: 8px 16px;
+}
+
+nav ul li a:hover {
+    background-color: #ddd;
+}
+
+main {
+    padding: 20px;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+form input, form select {
+    display: block;
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 100%;
+    max-width: 400px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+footer {
+    background-color: #f2f2f2;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('transaccion-form');
+    const transaccionList = document.getElementById('transaccion-list');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const tipo = document.getElementById('tipo').value;
+        const monto = document.getElementById('monto').value;
+        const descripcion = document.getElementById('descripcion').value;
+
+        const transaccion = document.createElement('div');
+        transaccion.className = 'transaccion';
+        transaccion.innerHTML = `
+            <p><strong>Tipo:</strong> ${tipo}</p>
+            <p><strong>Monto:</strong> $${monto}</p>
+            <p><strong>Descripción:</strong> ${descripcion}</p>
+            <hr>
+        `;
+
+        transaccionList.appendChild(transaccion);
+
+        // Limpiar el formulario
+        form.reset();
+    });
+});
+cd accounting-app
+git init
+git add .
+git commit -m "Primer commit - Hoja de inicio para operaciones de contabilidad"
+git remote add origin <URL del repositorio en GitHub>
+git branch -M main
+git push -u origin main
+accounting-app/
+│
+├── index.html
+├── styles.css
+└── script.js
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contabilidad - Libro Diario y Reportes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Sistema de Contabilidad</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#transacciones">Registrar Transacciones</a></li>
+            <li><a href="#libro-diario">Libro Diario</a></li>
+            <li><a href="#libro-mayor">Libro Mayor</a></li>
+            <li><a href="#balance-comprobacion">Balance de Comprobación</a></li>
+            <li><a href="#estado-resultados">Estado de Resultados</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <section id="transacciones">
+            <h2>Registrar Transacciones</h2>
+            <form id="transaccion-form">
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" name="fecha" required>
+                
+                <label for="cuenta">Cuenta:</label>
+                <input type="text" id="cuenta" name="cuenta" required>
+                
+                <label for="tipo">Tipo de Transacción:</label>
+                <select id="tipo" name="tipo">
+                    <option value="debito">Débito</option>
+                    <option value="credito">Crédito</option>
+                </select>
+                
+                <label for="monto">Monto:</label>
+                <input type="number" id="monto" name="monto" required>
+                
+                <label for="descripcion">Descripción:</label>
+                <input type="text" id="descripcion" name="descripcion">
+                
+                <button type="submit">Registrar</button>
+            </form>
+        </section>
+        
+        <section id="libro-diario">
+            <h2>Libro Diario</h2>
+            <table id="diario-table">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Cuenta</th>
+                        <th>Tipo</th>
+                        <th>Monto</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+        
+        <section id="libro-mayor">
+            <h2>Libro Mayor</h2>
+            <div id="mayor-content"></div>
+        </section>
+        
+        <section id="balance-comprobacion">
+            <h2>Balance de Comprobación</h2>
+            <table id="balance-comprobacion-table">
+                <thead>
+                    <tr>
+                        <th>Cuenta</th>
+                        <th>Débito</th>
+                        <th>Crédito</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+        
+        <section id="estado-resultados">
+            <h2>Estado de Resultados</h2>
+            <table id="estado-resultados-table">
+                <thead>
+                    <tr>
+                        <th>Cuenta</th>
+                        <th>Monto</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Sistema de Contabilidad</p>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    padding: 8px 16px;
+}
+
+nav ul li a:hover {
+    background-color: #ddd;
+}
+
+main {
+    padding: 20px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+form input, form select {
+    display: block;
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 100%;
+    max-width: 400px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+footer {
+    background-color: #f2f2f2;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('transaccion-form');
+    const diarioTableBody = document.querySelector('#diario-table tbody');
+    const mayorContent = document.getElementById('mayor-content');
+    const balanceTableBody = document.querySelector('#balance-comprobacion-table tbody');
+    const estadoResultadosTableBody = document.querySelector('#estado-resultados-table tbody');
+
+    const loadTransactions = () => {
+        const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+        updateDiarioTable(transactions);
+        updateLibroMayor(transactions);
+        updateBalanceComprobacion(transactions);
+        updateEstadoResultados(transactions);
+    };
+
+    const saveTransaction = (transaction) => {
+        const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+        transactions.push(transaction);
+        localStorage.setItem('transactions', JSON.stringify(transactions));
+        loadTransactions();
+    };
+
+    const updateDiarioTable = (transactions) => {
+        diarioTableBody.innerHTML = transactions.map(t => `
+            <tr>
+                <td>${t.fecha}</td>
+                <td>${t.cuenta}</td>
+                <td>${t.tipo}</td>
+                <td>${t.monto}</td>
+                <td>${t.descripcion}</td>
+            </tr>
+        `).join('');
+    };
+
+    const updateLibroMayor = (transactions) => {
+        const accounts = {};
+        transactions.forEach(t => {
+            if (!accounts[t.cuenta]) {
+                accounts[t.cuenta] = { debito: 0, credito: 0 };
+            }
+            if (t.tipo === 'debito') {
+                accounts[t.cuenta].debito += parseFloat(t.monto);
+            } else {
+                accounts[t.cuenta].credito += parseFloat(t.monto);
+            }
+        });
+        mayorContent.innerHTML = Object.keys(accounts).map(cuenta => `
+            <h3>${cuenta}</h3>
+            <p>Débitos: $${accounts[cuenta].debito}</p>
+            <p>Créditos: $${accounts[cuenta].credito}</p>
+        `).join('');
+    };
+
+    const updateBalanceComprobacion = (transactions) => {
+        const accounts = {};
+        transactions.forEach(t => {
+            if (!accounts[t.cuenta]) {
+                accounts[t.cuenta] = { debito: 0, credito: 0 };
+            }
+            if (t.tipo === 'debito') {
+                accounts[t.cuenta].debito += parseFloat(t.monto);
+            } else {
+                accounts[t.cuenta].credito += parseFloat(t.monto);
+            }
+        });
+        balanceTableBody.innerHTML = Object.keys(accounts).map(cuenta => `
+            <tr>
+                <td>${cuenta}</td>
+                <td>$${accounts[cuenta].debito}</td>
+                <td>$${accounts[cuenta].credito}</td>
+            </tr>
+        `).join('');
+    };
+
+    const updateEstadoResultados = (transactions) => {
+        const ingresos = transactions.reduce((sum, t) => t.tipo === 'credito' ? sum + parseFloat(t.monto) : sum, 0);
+        const egresos = transactions.reduce((sum, t) => t.tipo === 'debito' ? sum + parseFloat(t.monto) : sum, 0);
+        estadoResultadosTableBody.innerHTML = `
+            <tr>
+                <td>Ingresos</td>
+                <td>$${ingresos}</td>
+            </tr>
+            <tr>
+                <td>Egresos</td>
+                <td>$${egresos}</td>
+            </tr>
+            <tr>
+                <td><strong>Resultado</strong></td>
+                <td><strong>$${ingresos - egresos}</strong></td>
+            </tr>
+        `;
+    };
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const fecha = document.getElementById('fecha').value;
+        const cuenta = document.getElementById('cuenta').value;
+        const tipo = document.getElementById('tipo').value;
+        const monto = document.getElementById('monto').value;
+        const descripcion = document.getElementById('descripcion').value;
+
+        saveTransaction({ fecha, cuenta, tipo, monto, descripcion });
+        
+        form.reset();
+    });
+
+    loadTransactions();
+});
+cd accounting-app
+git init
+git add .
+git commit -m "Primer commit - Sistema básico de contabilidad"
+git remote add origin <URL del repositorio en GitHub>
+git branch -M main
+git push -u origin main
+accounting-app/
+│
+├── client/                  # Frontend
+│   ├── index.html
+│   ├── styles.css
+│   └── script.js
+│
+├── server/                  # Backend
+│   ├── models/
+│   │   └── Transaction.js
+│   ├── routes/
+│   │   └── transactions.js
+│   ├── config/
+│   │   └── db.js
+│   ├── app.js
+│   └── auth.js
+│
+└── package.json
+mkdir server
+cd server
+npm init -y
+npm install express mongoose bcryptjs jsonwebtoken body-parser cors
+const mongoose = require('mongoose');
+
+const connectDB = async () => {
+    try {
+        await mongoose.connect('mongodb://localhost:27017/accounting', {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+        console.log('MongoDB Connected');
+    } catch (err) {
+        console.error(err.message);
+        process.exit(1);
+    }
+};
+
+module.exports = connectDB;
+const mongoose = require('mongoose');
+
+const TransactionSchema = new mongoose.Schema({
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    fecha: { type: Date, required: true },
+    cuenta: { type: String, required: true },
+    tipo: { type: String, enum: ['debito', 'credito'], required: true },
+    monto: { type: Number, required: true },
+    descripcion: { type: String }
+});
+
+module.exports = mongoose.model('Transaction', TransactionSchema);
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
+const UserSchema = new mongoose.Schema({
+    username: { type: String, unique: true, required: true },
+    password: { type: String, required: true }
+});
+
+UserSchema.pre('save', async function(next) {
+    if (!this.isModified('password')) return next();
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
+});
+
+UserSchema.methods.comparePassword = function(candidatePassword) {
+    return bcrypt.compare(candidatePassword, this.password);
+};
+
+UserSchema.methods.generateAuthToken = function() {
+    return jwt.sign({ id: this._id }, 'secret', { expiresIn: '1h' });
+};
+
+module.exports = mongoose.model('User', UserSchema);
+const express = require('express');
+const router = express.Router();
+const Transaction = require('../models/Transaction');
+const auth = require('../auth');
+
+// Registrar una nueva transacción
+router.post('/', auth, async (req, res) => {
+    try {
+        const transaction = new Transaction({
+            userId: req.user.id,
+            ...req.body
+        });
+        await transaction.save();
+        res.status(201).json(transaction);
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
+});
+
+// Obtener transacciones del usuario
+router.get('/', auth, async (req, res) => {
+    try {
+        const transactions = await Transaction.find({ userId: req.user.id });
+        res.status(200).json(transactions);
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
+});
+
+module.exports = router;
+const jwt = require('jsonwebtoken');
+const User = require('./models/User');
+
+const auth = async (req, res, next) => {
+    const token = req.header('x-auth-token');
+    if (!token) return res.status(401).json({ msg: 'No token, authorization denied' });
+
+    try {
+        const decoded = jwt.verify(token, 'secret');
+        req.user = await User.findById(decoded.id);
+        next();
+    } catch (err) {
+        res.status(401).json({ msg: 'Token is not valid' });
+    }
+};
+
+module.exports = auth;
+const express = require('express');
+const connectDB = require('./config/db');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const auth = require('./auth');
+
+const app = express();
+
+// Conectar a la base de datos
+connectDB();
+
+// Middleware
+app.use(cors());
+app.use(bodyParser.json());
+
+// Rutas
+app.use('/api/transactions', require('./routes/transactions'));
+
+// Iniciar servidor
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contabilidad - Libro Diario y Reportes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Sistema de Contabilidad</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#login">Iniciar Sesión</a></li>
+            <li><a href="#register">Registrarse</a></li>
+            <li><a href="#transacciones">Registrar Transacciones</a></li>
+            <li><a href="#libro-diario">Libro Diario</a></li>
+            <li><a href="#libro-mayor">Libro Mayor</a></li>
+            <li><a href="#balance-comprobacion">Balance de Comprobación</a></li>
+            <li><a href="#estado-resultados">Estado de Resultados</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <!-- Login Form -->
+        <section id="login">
+            <h2>Iniciar Sesión</h2>
+            <form id="login-form">
+                <label for="login-username">Usuario:</label>
+                <input type="text" id="login-username" name="username" required>
+                
+                <label for="login-password">Contraseña:</label>
+                <input type="password" id="login-password" name="password" required>
+                
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+        </section>
+
+        <!-- Register Form -->
+        <section id="register">
+            <h2>Registrarse</h2>
+            <form id="register-form">
+                <label for="register-username">Usuario:</label>
+                <input type="text" id="register-username" name="username" required>
+                
+                <label for="register-password">Contraseña:</label>
+                <input type="password" id="register-password" name="password" required>
+                
+                <button type="submit">Registrarse</button>
+            </form>
+        </section>
+
+        <!-- Transaction Form -->
+        <section id="transacciones">
+            <h2>Registrar Transacciones</h2>
+            <form id="transaccion-form">
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" name="fecha" required>
+                
+                <label for="cuenta">Cuenta:</label>
+                <input type="text" id="cuenta" name="cuenta" required>
+                
+                <label for="tipo">Tipo de Transacción:</label>
+                <select id="tipo" name="tipo">
+                    <option value="debito">Débito</option>
+                    <option value="credito">Crédito</option>
+                </select>
+                
+                <label for="monto">Monto:</label>
+                <input type="number" id="monto" name="monto" required>
+                
+                <label for="descripcion">Descripción:</label>
+                <input type="text" id="descripcion" name="descripcion">
+                
+                <button type="submit">Registrar</button>
+            </form>
+        </section>
+
+        <!-- Other sections remain the same -->
+
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Sistema de Contabilidad</p>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>
+document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+    const transaccionForm = document.getElementById('transaccion-form');
+    const tokenKey = 'authToken';
+
+    const apiUrl = 'http://localhost:5000/api/transactions';
+
+    const setAuthToken = (token) => {
+        localStorage.setItem(tokenKey, token);
+    };
+
+    const getAuthToken = () => {
+        return localStorage.getItem(tokenKey);
+    };
+
+    const clearAuthToken = () => {
+        localStorage.removeItem(tokenKey);
+    };
+
+    const requestOptions = (method, body) => ({
+        method,
+        headers: {
+            'Content-Type': 'application/json',
+            'x-auth-token': getAuthToken()
+        },
+        body: JSON.stringify(body)
+    });
+
+    // Handle login
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const username = document.getElementById('login-username').value;
+        const password = document.getElementById('login-password').value;
+
+        try {
+            const response = await fetch('http://localhost:5000/api/users/login', requestOptions('POST', { username, password }));
+            const data = await response.json();
+            if (response.ok) {
+                setAuthToken(data.token);
+                alert('Inicio de sesión exitoso');
+                loadTransactions();
+            } else {
+                alert(data.msg || 'Error en inicio de sesión');
+            }
+        } catch (err) {
+            alert('Error de red');
+        }
+    });
+
+    // Handle registration
+    registerForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const username = document.getElementById('register-username').value;
+        const password = document.getElementById('register-password').value;
+
+        try {
+            const response = await fetch('http://localhost:5000/api/users/register', requestOptions('POST', { username, password }));
+            const data = await response.json();
+            if (response.ok) {
+                alert('Registro exitoso');
+            } else {
+                alert(data.msg || 'Error en registro');
+            }
+        } catch (err) {
+            alert('Error de red');
+        }
+    });
+
+    // Handle transaction form submission
+    transaccionForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const fecha = document.getElementById('fecha').value;
+        const cuenta = document.getElementById('cuenta').value;
+        const tipo = document.getElementById('tipo').value;
+        const monto = document.getElementById('monto').value;
+        const descripcion = document.getElementById('descripcion').value;
+
+        try {
+            const response = await fetch(apiUrl, requestOptions('POST', { fecha, cuenta, tipo, monto, descripcion }));
+            const data = await response.json();
+            if (response.ok) {
+                alert('Transacción registrada');
+                loadTransactions();
+            } else {
+                alert(data.error || 'Error en registro de transacción');
+            }
+        } catch (err) {
+            alert('Error de red');
+        }
+    });
+
+    // Load transactions and update views
+    const loadTransactions = async () => {
+        try {
+            const response = await fetch(apiUrl, requestOptions('GET'));
+            const data = await response.json();
+            if (response.ok) {
+                updateDiarioTable(data);
+                updateLibroMayor(data);
+                updateBalanceComprobacion(data);
+                updateEstadoResultados(data);
+            } else {
+                alert(data.error || 'Error al cargar transacciones');
+            }
+        } catch (err) {
+            alert('Error de red');
+        }
+    };
+
+    const updateDiarioTable = (transactions) => {
+        const diarioTableBody = document.querySelector('#diario-table tbody');
+        diarioTableBody.innerHTML = transactions.map(t => `
+            <tr>
+                <td>${new Date(t.fecha).toLocaleDateString()}</td>
+                <td>${t.cuenta}</td>
+                <td>${t.tipo}</td>
+                <td>${t.monto}</td>
+                <td>${t.descripcion}</td>
+            </tr>
+        `).join('');
+    };
+
+    const updateLibroMayor = (transactions) => {
+        const accounts = {};
+        transactions.forEach(t => {
+            if (!accounts[t.cuenta]) {
+                accounts[t.cuenta] = { debito: 0, credito: 0 };
+            }
+            if (t.tipo === 'debito') {
+                accounts[t.cuenta].debito += parseFloat(t.monto);
+            } else {
+                accounts[t.cuenta].credito += parseFloat(t.monto);
+            }
+        });
+        const mayorContent = document.getElementById('mayor-content');
+        mayorContent.innerHTML = Object.keys(accounts).map(cuenta => `
+            <h3>${cuenta}</h3>
+            <p>Débitos: $${accounts[cuenta].debito}</p>
+            <p>Créditos: $${accounts[cuenta].credito}</p>
+        `).join('');
+    };
+
+    const updateBalanceComprobacion = (transactions) => {
+        const accounts = {};
+        transactions.forEach(t => {
+            if (!accounts[t.cuenta]) {
+                accounts[t.cuenta] = { debito: 0, credito: 0 };
+            }
+            if (t.tipo === 'debito') {
+                accounts[t.cuenta].debito += parseFloat(t.monto);
+            } else {
+                accounts[t.cuenta].credito += parseFloat(t.monto);
+            }
+        });
+        const balanceTableBody = document.querySelector('#balance-comprobacion-table tbody');
+        balanceTableBody.innerHTML = Object.keys(accounts).map(cuenta => `
+            <tr>
+                <td>${cuenta}</td>
+                <td>$${accounts[cuenta].debito}</td>
+                <td>$${accounts[cuenta].credito}</td>
+            </tr>
+        `).join('');
+    };
+
+    const updateEstadoResultados = (transactions) => {
+        const ingresos = transactions.reduce((sum, t) => t.tipo === 'credito' ? sum + parseFloat(t.monto) : sum, 0);
+        const egresos = transactions.reduce((sum, t) => t.tipo === 'debito' ? sum + parseFloat(t.monto) : sum, 0);
+        const estadoResultadosTableBody = document.querySelector('#estado-resultados-table tbody');
+        estadoResultadosTableBody.innerHTML = `
+            <tr>
+                <td>Ingresos</td>
+                <td>$${ingresos}</td>
+            </tr>
+            <tr>
+                <td>Egresos</td>
+                <td>$${egresos}</td>
+            </tr>
+            <tr>
+                <td><strong>Resultado</strong></td>
+                <td><strong>$${ingresos - egresos}</strong></td>
+            </tr>
+        `;
+    };
+
+    // Load transactions on page load if authenticated
+    if (getAuthToken()) {
+        loadTransactions();
+    }
+});
+cd server
+node app.js
